@@ -31,10 +31,18 @@ function App() {
     console.log('Task deleted with id: ' + id)
   }
 
+
+  //Toggle reminder
+
+  const toggleReminder = (id) => {
+    setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: !task.reminder } : task))
+    console.log('task remind properety changed to the opposite, id: ' + id)
+  }
+
   return (
     <div className="container">
       <Header />
-      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} /> : 'No tasks to show'}
+      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : 'No tasks to show'}
     </div>
   )
 }
